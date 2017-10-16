@@ -1,11 +1,23 @@
 <h3>Post Form</h3>
 
+<%= form_for(@post) do |f| %> <!--form_for knows it can use the @post instance variable, and automatically sets up the method call. It 'just knows' that it should be a put method, because its dealing with a pre-existing record. -->
+  <label>Post title:</label><br> <!-- |f| is an iterator that we can use on the form to dynamically set form field elements to post data attributes-->
+  <%= f.text_field :title %><br> <!-- dont have to pass in values manually. :title automatically tells it what model attribute  to be associated with, and autofills previous values-->
+
+  <label>Post Description</label><br>
+  <%= f.text_area :description %><br>
+
+  <%= f.submit %> <!-- will need to change put to patch in routes.rb, because tahts the method form_for uses-->
+<% end %>
+
+<!-- <h3>Post Form</h3> Other way, with form_tag
+
 <%= form_tag post_path(@post), method: "put" do %>
   <label>Post title:</label><br>
   <%= text_field_tag :title, @post.title %><br>
 
   <label>Post Description</label><br>
   <%= text_area_tag :description, @post.description %><br>
-  
+
   <%= submit_tag "Submit Post" %>
-<% end %>
+<% end %> -->
